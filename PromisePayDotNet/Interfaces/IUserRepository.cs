@@ -19,7 +19,7 @@ namespace PromisePayDotNet.Interfaces
 
         IEnumerable<PayPalAccount> ListPayPalAccountsForUser(string userId);
 
-        IEnumerable<CardAccount> ListCardAccountsForUser(string userId);
+        CardAccount GetCardAccountForUser(string userId);
 
         IEnumerable<BankAccount> ListBankAccountsForUser(string userId);
 

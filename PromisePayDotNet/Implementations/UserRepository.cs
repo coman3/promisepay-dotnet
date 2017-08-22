@@ -123,7 +123,7 @@ namespace PromisePayDotNet.Implementations
             return new List<PayPalAccount>();
         }
 
-        public IEnumerable<CardAccount> ListCardAccountsForUser(string userId)
+        public CardAccount GetCardAccountForUser(string userId)
         {
             AssertIdNotNull(userId);
             var request = new RestRequest("/users/{id}/card_accounts", Method.GET);
@@ -137,7 +137,7 @@ namespace PromisePayDotNet.Implementations
             {
                 if (e.Errors.Count == 1 && e.Errors.Values.First().First() == "no account found")
                 {
-                    return new List<CardAccount>();
+                    return null;
                 }
                 throw;
             }
@@ -145,9 +145,9 @@ namespace PromisePayDotNet.Implementations
             if (dict.ContainsKey("card_accounts"))
             {
                 var itemCollection = dict["card_accounts"];
-                return JsonConvert.DeserializeObject<List<CardAccount>>(JsonConvert.SerializeObject(itemCollection));
+                return JsonConvert.DeserializeObject<CardAccount>(JsonConvert.SerializeObject(itemCollection));
             }
-            return new List<CardAccount>();
+            return null;
         }
 
         public IEnumerable<BankAccount> ListBankAccountsForUser(string userId)
