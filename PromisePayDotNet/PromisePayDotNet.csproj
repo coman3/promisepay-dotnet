@@ -154,6 +154,7 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Settings\PromisePaySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Authenticators\PublicTokenAuthenticator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NugetBuild.txt" />
@@ -161,6 +162,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="PromisePayDotNet.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Authenticators\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

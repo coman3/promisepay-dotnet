@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
+using PromisePayDotNet.Authenticators;
 
 namespace PromisePayDotNet.Implementations
 {
@@ -21,7 +22,11 @@ namespace PromisePayDotNet.Implementations
         {
             this.Client = client;
             client.BaseUrl = new Uri(BaseUrl);
-            client.Authenticator = new HttpBasicAuthenticator(Login, Password);
+
+            if(string.IsNullOrWhiteSpace(Password))
+                client.Authenticator = new PublicTokenAuthenticator(Login, Key);
+            else
+                client.Authenticator = new HttpBasicAuthenticator(Login, Password);
         }
 
         private Hashtable Configurataion
@@ -68,6 +73,24 @@ namespace PromisePayDotNet.Implementations
               
             }
         }
+
+		protected string Key
+		{
+			get
+			{
+				var key = ConfigurationManager.AppSettings["PromisePayKey"] as String;
+				if (key == null && (Configurataion != null))
+				{
+					key = Configurataion["Key"] as String;
+				}
+				if (key == null)
+				{
+					throw new MisconfigurationException("Unable to get URL info from config file");
+				}
+
+				return key;
+			}
+		}
 
         public string Password
         {
