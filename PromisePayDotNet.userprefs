@@ -1,7 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="PromisePayDotNet/Implementations/AbstractRepository.cs">
     <Files>
-      <File FileName="PromisePayDotNet/Implementations/AbstractRepository.cs" Line="29" Column="57" />
+      <File FileName="PromisePayDotNet/Implementations/AbstractRepository.cs" Line="25" Column="13" />
+      <File FileName="PromisePayDotNet/Authenticators/PublicTokenAuthenticator.cs" Line="21" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

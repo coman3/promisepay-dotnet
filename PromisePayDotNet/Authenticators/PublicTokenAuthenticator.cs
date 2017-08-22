@@ -18,7 +18,7 @@ namespace PromisePayDotNet.Authenticators
 
         public void Authenticate(IRestClient client, IRestRequest request)
         {
-            request.AddHeader("Authorization", Base64Encode($"{Email}:{PublicToken}"));
+            request.AddHeader("Authorization", "Basic " + Base64Encode($"{Email}:{PublicToken}"));
         }
 
 		private static string Base64Encode(string plainText)
