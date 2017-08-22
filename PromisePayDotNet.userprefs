@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="PromisePayDotNet/Implementations/AbstractRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PromisePayDotNet.Portable/Implementations/AbstractRepository.cs">
     <Files>
-      <File FileName="PromisePayDotNet/Implementations/AbstractRepository.cs" Line="25" Column="13" />
-      <File FileName="PromisePayDotNet/Authenticators/PublicTokenAuthenticator.cs" Line="21" Column="59" />
+      <File FileName="PromisePayDotNet.Portable/Implementations/AbstractRepository.cs" Line="97" Column="30" />
+      <File FileName="PromisePayDotNet.Portable/DI/InitUnityContainer.cs" Line="13" Column="48" />
+      <File FileName="PromisePayDotNet.Portable/Dynamic.Implementations/ChargeRepository.cs" Line="77" Column="91" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
