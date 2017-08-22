@@ -13,8 +13,6 @@ namespace PromisePayDotNet.Implementations
 {
     public class AbstractRepository
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         protected const int EntityListLimit = 200;
 
         protected IRestClient Client;
@@ -45,7 +43,6 @@ namespace PromisePayDotNet.Implementations
                 }
                 if (baseUrl == null)
                 {
-                    log.Fatal("Unable to get URL info from config file");
                     throw new MisconfigurationException("Unable to get URL info from config file");
                 }
                 
@@ -64,7 +61,6 @@ namespace PromisePayDotNet.Implementations
                 }
                 if (login == null)
                 {
-                    log.Fatal("Unable to get Login info from config file");
                     throw new MisconfigurationException("Unable to get URL info from config file");
                 }
 
@@ -84,7 +80,6 @@ namespace PromisePayDotNet.Implementations
                 }
                 if (password == null)
                 {
-                    log.Fatal("Unable to get Password info from config file");
                     throw new MisconfigurationException("Unable to get URL info from config file");
                 }
 
@@ -96,26 +91,19 @@ namespace PromisePayDotNet.Implementations
         {
             var response = client.Execute(request);
 
-            log.Debug(String.Format(
-                    "Executed request to {0} with method {1}, got the following status: {2} and the body is {3}",
-                    response.ResponseUri, request.Method, response.StatusDescription, response.Content));
-
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
-                log.Error("Your login/password are unknown to server");
                 throw new UnauthorizedException("Your login/password are unknown to server");
             }
 
             if (((int)response.StatusCode) == 422)
             {
                 var errors = JsonConvert.DeserializeObject<ErrorsDAO>(response.Content).Errors;
-                log.Error(String.Format("API returned following errors: {0}", JsonConvert.SerializeObject(errors)));
                 throw new ApiErrorsException("API returned errors, see Errors property", errors);
             }
             if (response.StatusCode == HttpStatusCode.BadRequest)
             {
                 var message = JsonConvert.DeserializeObject<IDictionary<string,string>>(response.Content)["message"];
-                log.Error(String.Format("Bad request: {0}", message));
                 throw new ApiErrorsException(message, null);
             }
             return response;
@@ -125,7 +113,6 @@ namespace PromisePayDotNet.Implementations
         {
             if (string.IsNullOrEmpty(itemId))
             {
-                log.Error("id cannot be empty!");
                 throw new ArgumentException("id cannot be empty!");
             }
         }
@@ -134,14 +121,12 @@ namespace PromisePayDotNet.Implementations
         {
             if (limit < 0 || offset < 0)
             {
-                log.Error("limit and offset values should be nonnegative!");
                 throw new ArgumentException("limit and offset values should be nonnegative!");
             }
 
             if (limit > EntityListLimit)
             {
                 var message = String.Format("Max value for limit parameter is {0}!", EntityListLimit);
-                log.Error(message);
                 throw new ArgumentException(message);
             }
         }

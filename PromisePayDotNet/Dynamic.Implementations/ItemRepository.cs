@@ -16,7 +16,6 @@ namespace PromisePayDotNet.Dynamic.Implementations
         {
         }
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public IDictionary<string,object> ListItems(int limit = 10, int offset = 0)
         {

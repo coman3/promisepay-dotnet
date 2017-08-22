@@ -15,7 +15,6 @@ namespace PromisePayDotNet.Implementations
         {
         }
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public IEnumerable<Item> ListItems(int limit = 10, int offset = 0)
         {

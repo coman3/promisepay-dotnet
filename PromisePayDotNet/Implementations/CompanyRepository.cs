@@ -14,8 +14,6 @@ namespace PromisePayDotNet.Implementations
         {
         }
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public IEnumerable<Company> ListCompanies()
         {
             var request = new RestRequest("/companies", Method.GET);
